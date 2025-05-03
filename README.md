@@ -52,14 +52,14 @@ This phase focuses on setting up a SIEM platform (Splunk) to collect and analyze
 
 
 **What We Did**:
-Installed Splunk Enterprise on the Kali Linux machine
-Installed Forwarder on the Metasploitable3 machine
-Configured log forwarding from Victim and Attacker
-Enabled log receiving 
-Built visual dashboards to monitor:
- - Failed and successful SSH login attempts
- - Brute-force attack sources
- -Timeline comparisons of attacker vs victim actions
+ - Installed Splunk Enterprise on the Kali Linux machine
+ - Installed Forwarder on the Metasploitable3 machine
+ - Configured log forwarding from Victim and Attacker
+ - Enabled log receiving 
+ - Built visual dashboards to monitor:
+   - Failed and successful SSH login attempts
+   - Brute-force attack sources
+   -Timeline comparisons of attacker vs victim actions
 
 
 **Tool Used**:
