@@ -50,6 +50,7 @@ Simulate an attack on a vulnerable SSH service running on Metasploitable3, first
 **Objective**:
 This phase focuses on setting up a SIEM platform (Splunk) to collect and analyze logs from both the attacker (Kali Linux) and victim (Metasploitable3) machines. The aim is to detect brute-force attacks, visualize behavior patterns, and analyze system responses.
 
+
 **What We Did**:
 Installed Splunk Enterprise on the Kali Linux machine
 Installed Forwarder on the Metasploitable3 machine
@@ -60,11 +61,12 @@ Built visual dashboards to monitor:
  - Brute-force attack sources
  -Timeline comparisons of attacker vs victim actions
 
+
 **Tool Used**:
-Splunk Enterprise
-Splunk Universal Forwarder
-Kali Linux
-Metasploitable3
+ - Splunk Enterprise
+ - Splunk Universal Forwarder
+ - Kali Linux
+ - Metasploitable3
 
 ---
 
