@@ -124,14 +124,13 @@ This confirms that the defense successfully mitigated the attack.
 ---
 
 ## 📸 Screenshot
-- configure_jail.local.png
-This screenshot shows the jail.local file on Metasploitable3 where    Fail2Ban is configured to protect the SSH service.
-- Attack_Failure.png
-Captures the brute-force attack attempt using Metasploit. After three failed login combinations, further access was denied and connection attempts were refused
-- Banned_List_Before.png
-Shows the initial state of Fail2Ban before applying the defense.
-- Banned_List_After.png
-Displays the updated Fail2Ban status after the attack. The attacker's IP (172.28.128.10) is now listed as banned, proving that the tool actively blocked the intrusion after detecting repeated failures.
+- **configure_jail.local.png**: This screenshot shows the jail.local file on Metasploitable3 where Fail2Ban is configured to protect the SSH service.
+  
+- **Attack_Failure.png**: Captures the brute-force attack attempt using Metasploit. After three failed login combinations, further access was denied and connection attempts were refused.
+  
+- **Banned_List_Before.png**: Shows the initial state of Fail2Ban before applying the defense.
+  
+- **Banned_List_After.png**: Displays the updated Fail2Ban status after the attack. The attacker's IP (172.28.128.10) is now listed as banned, proving that the tool actively blocked the intrusion after detecting repeated failures.
 
 
 
