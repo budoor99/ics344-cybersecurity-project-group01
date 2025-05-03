@@ -68,6 +68,19 @@ sudo service fail2ban restart
 
 ## 🔁 Testing & Validation
 
+- We reused the same Metasploit attack from Phase 1:
+
+```bash
+set RHOSTS 172.28.128.3
+set USER_FILE /home/kali/users.txt
+set PASS_FILE /home/kali/pass.txt
+set BRUTEFORCE_SPEED 5
+set THREADS 4
+set VERBOSE true
+set STOP_ON_SUCCESS true
+run
+```
+
 We repeated the same attack using Metasploit after the defense was installed. Fail2Ban detected the repeated failures and banned the attacker's IP after 3 attempts.
 
 ---
