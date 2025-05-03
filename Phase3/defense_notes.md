@@ -49,7 +49,7 @@ This configuration means:
 
 
 
-3.Ensure SSH Filter is Present:
+3. Ensure SSH Filter is Present:
 
 ```bash
 /etc/fail2ban/filter.d/sshd.conf
@@ -58,7 +58,7 @@ Why this matters:
 
 This filter contains the regex patterns Fail2Ban uses to identify failed login attempts in /var/log/auth.log. Without it, Fail2Ban won’t know how to detect the brute-force activity.
 
-4.Start Fail2Ban:
+4. Start Fail2Ban:
 
 ```bash
 sudo service fail2ban restart
