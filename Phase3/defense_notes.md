@@ -14,7 +14,7 @@ This section demonstrates how we secured the vulnerable SSH service on Metasploi
 
 ---
 
-## Defense Mechanism: Fail2Ban Setup
+## 🛠 Defense Mechanism: Fail2Ban Setup
 
 We chose Fail2Ban, a popular intrusion prevention tool, to automatically detect failed SSH login attempts and ban the attacker's IP after repeated failures.
 
@@ -66,7 +66,7 @@ sudo service fail2ban restart
 
 ---
 
-## Testing & Validation
+## 🔁 Testing & Validation
 
 We repeated the same attack using Metasploit after the defense was installed. Fail2Ban detected the repeated failures and banned the attacker's IP after 3 attempts.
 
@@ -81,12 +81,13 @@ We repeated the same attack using Metasploit after the defense was installed. Fa
 ```
 Could not connect: The connection was refused by the remote host (172.28.128.3:22)
 ```
-
+## 📊 Before-and-After Comparison
+tablee
 This confirms that the defense successfully mitigated the attack.
 
 ---
 
-## Screenshot
+## 📸 Screenshot
 
 
 ---
