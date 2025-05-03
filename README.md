@@ -77,15 +77,14 @@ Implement a defensive mechanism on the victim machine (Metasploitable3) to preve
 
 **What We Did:**
 - Selected Fail2Ban as the defensive solution to monitor and protect SSH login attempts
-- Installed Fail2Ban on Metasploitable3
 - Configured a custom jail for the sshd service in /etc/fail2ban/jail.local
-- Defined a filter in /etc/fail2ban/filter.d/sshd.conf to monitor failed SSH logins from /var/log/auth.log
 - Set thresholds:
- - maxretry = 3
- - findtime = 600 seconds
- - bantime = 600 seconds
+  - maxretry = 3
+  - findtime = 600 seconds
+  - bantime = 600 seconds
 - Reran the same attack using Metasploit with no valid credentials
-- Attack was blocked after 3 failed login attempts, as shown by “connection refused” errors
+- Fail2Ban detected and blocked the Kali IP after 3 failed login attempts; Demonstrating the defense was successful
+
 
 
 
