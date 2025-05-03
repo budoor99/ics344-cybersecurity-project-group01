@@ -83,7 +83,13 @@ Implement a defensive mechanism on the victim machine (Metasploitable3) to preve
   - findtime = 600 seconds
   - bantime = 600 seconds
 - Reran the same attack using Metasploit with no valid credentials
-- Fail2Ban detected and blocked the Kali IP after 3 failed login attempts; Demonstrating the defense was successful
+- Fail2Ban detected and blocked the Kali IP after 3 failed login attempts, demonstrating the defense was successful
+
+**Tool Used**:
+- Fail2Ban
+- Nano (for editing jail and filter files)
+- Kali Linux
+- Metasploitable3
 
 
 
