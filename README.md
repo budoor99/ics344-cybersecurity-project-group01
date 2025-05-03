@@ -72,8 +72,24 @@ This phase focuses on setting up a SIEM platform (Splunk) to collect and analyze
 ---
 
 ## 🛡 Phase 3: Defensive Measures
+**Objective:**
+Implement a defensive mechanism on the victim machine (Metasploitable3) to prevent brute-force SSH attacks and demonstrate its effectiveness.
 
-To be ADDED
+**What We Did:**
+- Selected Fail2Ban as the defensive solution to monitor and protect SSH login attempts
+- Installed Fail2Ban on Metasploitable3
+- Configured a custom jail for the sshd service in /etc/fail2ban/jail.local
+- Defined a filter in /etc/fail2ban/filter.d/sshd.conf to monitor failed SSH logins from /var/log/auth.log
+- Set thresholds:
+ - maxretry = 3
+ - findtime = 600 seconds
+ - bantime = 600 seconds
+- Reran the same attack using Metasploit with no valid credentials
+- Attack was blocked after 3 failed login attempts, as shown by “connection refused” errors
+
+
+
+
 
 ---
 
