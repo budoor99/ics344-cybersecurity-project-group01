@@ -56,7 +56,8 @@ This configuration means:
 ```
 Why this matters:
 
-This filter contains the regex patterns Fail2Ban uses to identify failed login attempts in /var/log/auth.log. Without it, Fail2Ban won’t know how to detect the brute-force activity.
+This filter contains the regex patterns Fail2Ban uses to identify failed login attempts in /var/log/auth.log.
+Without it, Fail2Ban won’t know how to detect the brute-force activity.
 
 4. Start Fail2Ban:
 
