@@ -82,7 +82,16 @@ We repeated the same attack using Metasploit after the defense was installed. Fa
 Could not connect: The connection was refused by the remote host (172.28.128.3:22)
 ```
 ## 📊 Before-and-After Comparison
-tablee
+
+
+| **Criteria**        | **Before Fail2Ban (Phase 1)**   | **After Fail2Ban (Phase 3)
+**    |
+| ----------------- | ------------- | ----------------- |
+| SSH brute-force attempts	       | Allowed unlimited attempts	      | Limited to 3 attempts
+     |
+| Metasploitable3   | Victim        | 172.28.128.3      |
+| Splunk Enterprise | SIEM Platform | Installed on Kali |
+
 This confirms that the defense successfully mitigated the attack.
 
 ---
