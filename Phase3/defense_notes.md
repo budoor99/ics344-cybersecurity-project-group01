@@ -59,11 +59,21 @@ Why this matters:
 This filter contains the regex patterns Fail2Ban uses to identify failed login attempts in /var/log/auth.log.
 Without it, Fail2Ban won’t know how to detect the brute-force activity.
 
-4. Start Fail2Ban:
+4. Check Fail2Ban Status Before Starting:
+
+Before applying the defense, you can verify that no jail is active:
+
+```bash
+sudo fail2ban-client status
+```
+
+
+5. Start Fail2Ban:
 
 ```bash
 sudo service fail2ban restart
 ```
+The screenshot (Banned_List_Before.png) confirms that no IP addresses are currently banned and that Fail2Ban is actively monitoring SSH.
 
 ---
 
@@ -82,7 +92,7 @@ set STOP_ON_SUCCESS true
 run
 ```
 
-We repeated the same attack using Metasploit after the defense was installed. Fail2Ban detected the repeated failures and banned the attacker's IP after 3 attempts.
+We repeated the same attack using Metasploit after the defense was installed. Fail2Ban detected the repeated failures as shown in Attack_failure.png and banned the attacker's IP after 3 attempts.
 
 ---
 
@@ -95,6 +105,9 @@ We repeated the same attack using Metasploit after the defense was installed. Fa
 ```
 Could not connect: The connection was refused by the remote host (172.28.128.3:22)
 ```
+
+As in Banned_List_After.png, initially, no IPs were banned (highlighted in yellow), but after rerunning the brute-force attack, Fail2Ban detected multiple failed login attempts and successfully banned the attacking IP 172.28.128.10 (highlighted in red).
+
 ### 🔄 Before-and-After Comparison
 
 | **Criteria**                    | **Before Fail2Ban (Phase 1)**                          | **After Fail2Ban (Phase 3)**                          |
