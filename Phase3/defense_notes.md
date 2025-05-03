@@ -81,9 +81,6 @@ We repeated the same attack using Metasploit after the defense was installed. Fa
 ```
 Could not connect: The connection was refused by the remote host (172.28.128.3:22)
 ```
-## 📊 Before-and-After Comparison
-
-
 ### 🔄 Before-and-After Comparison
 
 | **Criteria**                    | **Before Fail2Ban (Phase 1)**                          | **After Fail2Ban (Phase 3)**                          |
