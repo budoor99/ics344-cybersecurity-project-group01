@@ -59,7 +59,8 @@ This phase focuses on setting up a SIEM platform (Splunk) to collect and analyze
  - Built visual dashboards to monitor:
    - Failed and successful SSH login attempts
    - Brute-force attack sources
-   -Timeline comparisons of attacker vs victim actions
+   - Timeline comparisons of attacker vs victim actions
+   
 
 
 **Tool Used**:
