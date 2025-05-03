@@ -72,8 +72,6 @@ We repeated the same attack using Metasploit after the defense was installed. Fa
 
 ---
 
----
-
 ## Result
 
 - Metasploit attempted brute-force using wordlists
