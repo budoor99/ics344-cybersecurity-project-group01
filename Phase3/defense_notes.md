@@ -84,7 +84,14 @@ Could not connect: The connection was refused by the remote host (172.28.128.3:2
 ## 📊 Before-and-After Comparison
 
 
--table-
+### 🔄 Before-and-After Comparison
+
+| **Criteria**                    | **Before Fail2Ban (Phase 1)**                          | **After Fail2Ban (Phase 3)**                          |
+|---------------------------------|--------------------------------------------------------|--------------------------------------------------------|
+| SSH brute-force attempts        | Allowed unlimited attempts                            | Limited to 3 attempts                                  |
+| Successful brute-force login    | ✅ Yes (`vagrant:vagrant`) using Metasploit            | ❌ Not possible – connection refused after 3 tries     |
+| System response to attack       | No blocking, attacker could retry endlessly           | IP blocked for 10 minutes after failed attempts        |
+| Visibility of attack in logs    | Manual inspection required                            | Detected automatically by Fail2Ban                    |
 
 This confirms that the defense successfully mitigated the attack.
 
